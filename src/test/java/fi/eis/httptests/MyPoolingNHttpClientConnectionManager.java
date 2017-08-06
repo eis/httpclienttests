@@ -2,11 +2,9 @@ package fi.eis.httptests;
 
 import org.apache.http.concurrent.FutureCallback;
 import org.apache.http.config.Registry;
-import org.apache.http.conn.DnsResolver;
 import org.apache.http.conn.routing.HttpRoute;
 import org.apache.http.impl.nio.conn.PoolingNHttpClientConnectionManager;
 import org.apache.http.nio.NHttpClientConnection;
-import org.apache.http.nio.conn.NHttpConnectionFactory;
 import org.apache.http.nio.conn.SchemeIOSessionStrategy;
 import org.apache.http.nio.reactor.ConnectingIOReactor;
 
@@ -15,9 +13,6 @@ import java.util.concurrent.TimeUnit;
 
 public class MyPoolingNHttpClientConnectionManager extends PoolingNHttpClientConnectionManager {
 
-    public MyPoolingNHttpClientConnectionManager(ConnectingIOReactor ioreactor) {
-        super(ioreactor);
-    }
     public MyPoolingNHttpClientConnectionManager(ConnectingIOReactor ioreactor, Registry<SchemeIOSessionStrategy> iosessionFactoryRegistry) {
         super(ioreactor, iosessionFactoryRegistry);
     }
