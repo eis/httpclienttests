@@ -44,13 +44,13 @@ public class MyClientCertTest {
         //System.setProperty("javax.net.debug","all");
     }
 
-    private static final String KEYSTOREPATH = "/clientkeystore.jks";
+    private static final String KEYSTOREPATH = "/clientkeystore.p12"; // or .jks
     private static final String KEYSTOREPASS = "keystorepass";
     private static final String KEYPASS = "keypass";
 
     static KeyStore readStore() throws Exception {
         try (InputStream keyStoreStream = MyClientCertTest.class.getResourceAsStream(KEYSTOREPATH)) {
-            KeyStore keyStore = KeyStore.getInstance("JKS");
+            KeyStore keyStore = KeyStore.getInstance("PKCS12"); // or JKS
             keyStore.load(keyStoreStream, KEYSTOREPASS.toCharArray());
             return keyStore;
         }
