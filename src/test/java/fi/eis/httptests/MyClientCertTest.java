@@ -44,7 +44,7 @@ public class MyClientCertTest {
         //System.setProperty("javax.net.debug","all");
     }
 
-    private static final String KEYSTOREPATH = "/clientkeystore.p12"; // or .jks
+    private static final String KEYSTOREPATH = "/fi/eis/httptests/clientkeystore.p12"; // or .jks
     private static final String KEYSTOREPASS = "keystorepass";
     private static final String KEYPASS = "keypass";
 
