@@ -1,6 +1,5 @@
 package fi.eis.httptests;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -15,27 +14,59 @@ import java.security.KeyStore;
 
 public class PlainJavaHTTPS2Test {
 
-    @Before
-    public void setUp() throws Exception {
-        final String KEYSTOREPATH = "clientkeystore.p12"; // or .jks
+    @Test
+    public void testJKSKeyStore() throws Exception {
+        final String KEYSTOREPATH = "clientkeystore.jks";
+        final char[] KEYSTOREPASS = "keystorepass".toCharArray();
+        final char[] KEYPASS = "keypass".toCharArray();
+
+        try (InputStream storeStream = this.getClass().getResourceAsStream(KEYSTOREPATH)) {
+            setSSLFactories(storeStream, "JKS", KEYSTOREPASS, KEYPASS);
+        }
+        testPlainJavaHTTPS();
+    }
+    @Test
+    public void testP12KeyStore() throws Exception {
+        final String KEYSTOREPATH = "clientkeystore.p12";
         final char[] KEYSTOREPASS = "keystorepass".toCharArray();
         final char[] KEYPASS = "keypass".toCharArray();
 
         try (InputStream storeStream = this.getClass().getResourceAsStream(KEYSTOREPATH)) {
             setSSLFactories(storeStream, "PKCS12", KEYSTOREPASS, KEYPASS);
         }
+        testPlainJavaHTTPS();
+    }
+    @Test
+    public void testJKSKeyStoreSamePass() throws Exception {
+        final String KEYSTOREPATH = "clientkeystore-samepass.jks";
+        final char[] KEYSTOREPASS = "keystorepass".toCharArray();
+        final char[] KEYPASS = "keystorepass".toCharArray();
+
+        try (InputStream storeStream = this.getClass().getResourceAsStream(KEYSTOREPATH)) {
+            setSSLFactories(storeStream, "JKS", KEYSTOREPASS, KEYPASS);
+        }
+        testPlainJavaHTTPS();
+    }
+    @Test
+    public void testP12KeyStoreSamePass() throws Exception {
+        final String KEYSTOREPATH = "clientkeystore-samepass.p12";
+        final char[] KEYSTOREPASS = "keystorepass".toCharArray();
+        final char[] KEYPASS = "keystorepass".toCharArray();
+
+        try (InputStream storeStream = this.getClass().getResourceAsStream(KEYSTOREPATH)) {
+            setSSLFactories(storeStream, "PKCS12", KEYSTOREPASS, KEYPASS);
+        }
+        testPlainJavaHTTPS();
     }
     private static void setSSLFactories(InputStream keyStream, String keystoreType, char[] keyStorePassword, char[] keyPassword) throws Exception
     {
         KeyStore keyStore = KeyStore.getInstance(keystoreType);
 
-        // password can be null if there is no password
         keyStore.load(keyStream, keyStorePassword);
 
         KeyManagerFactory keyFactory =
                 KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
 
-        // password can be null if there is no password
         keyFactory.init(keyStore, keyPassword);
 
         KeyManager[] keyManagers = keyFactory.getKeyManagers();
@@ -44,7 +75,6 @@ public class PlainJavaHTTPS2Test {
         sslContext.init(keyManagers, null, null);
         SSLContext.setDefault(sslContext);
     }
-    @Test
     public void testPlainJavaHTTPS() throws Exception {
         String httpsURL = "https://slsh.iki.fi/client-certificate/protected/";
         URL myUrl = new URL(httpsURL);
