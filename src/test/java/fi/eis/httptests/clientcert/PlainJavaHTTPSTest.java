@@ -1,4 +1,4 @@
-package fi.eis.httptests;
+package fi.eis.httptests.clientcert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 

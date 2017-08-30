@@ -1,4 +1,4 @@
-package fi.eis.httptests;
+package fi.eis.httptests.clientcert;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -44,7 +44,7 @@ public class MyClientCertTest {
         //System.setProperty("javax.net.debug","all");
     }
 
-    private static final String KEYSTOREPATH = "/fi/eis/httptests/clientkeystore.p12"; // or .jks
+    private static final String KEYSTOREPATH = "/fi/eis/httptests/clientcert/clientkeystore.p12"; // or .jks
     private static final String KEYSTOREPASS = "keystorepass";
     private static final String KEYPASS = "keypass";
 

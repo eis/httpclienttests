@@ -1,4 +1,4 @@
-package fi.eis.httptests;
+package fi.eis.httptests.clientcert;
 
 import org.apache.http.concurrent.FutureCallback;
 import org.apache.http.config.Registry;

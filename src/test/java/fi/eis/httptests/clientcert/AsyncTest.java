@@ -1,4 +1,4 @@
-package fi.eis.httptests;
+package fi.eis.httptests.clientcert;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -20,7 +20,7 @@ import org.junit.Test;
 import javax.net.ssl.SSLContext;
 import java.util.concurrent.Future;
 
-import static fi.eis.httptests.MyClientCertTest.sslContext;
+import static fi.eis.httptests.clientcert.MyClientCertTest.sslContext;
 
 public class AsyncTest {
     @BeforeClass
