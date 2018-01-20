@@ -10,7 +10,8 @@ public class PlainJavaHTTPSTest {
 
     @BeforeClass
     public static void setUp() {
-        System.setProperty("javax.net.ssl.keyStore", new File(".").getAbsolutePath() + "/src/test/resources/fi/eis/httptests/clientkeystore-samepassword.jks");
+        System.setProperty("javax.net.ssl.keyStore",
+                new File(".").getAbsolutePath() + "/src/test/resources/fi/eis/httptests/clientkeystore-samepass.jks");
         System.setProperty("javax.net.ssl.keyStorePassword", "keystorepass");
     }
 
