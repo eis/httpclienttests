@@ -10,7 +10,7 @@ public class PlainJavaHTTPSTest {
 
     @BeforeClass
     public static void setUp() throws Exception {
-        System.setProperty("javax.net.ssl.keyStore",getAbsPath("clientkeystore-samepass.jks"));
+        System.setProperty("javax.net.ssl.keyStore", getAbsPath("clientkeystore-samepass.jks"));
         System.setProperty("javax.net.ssl.keyStorePassword", "keystorepass");
     }
 
