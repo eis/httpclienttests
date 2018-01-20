@@ -25,12 +25,7 @@ public class TrustAllCertificatesTest {
     final String wrongHostCertSite = "https://wrong.host.badssl.com/";
 
     static final TrustStrategy trustSelfSignedStrategy = new TrustSelfSignedStrategy();
-    static final TrustStrategy trustAllStrategy = new TrustStrategy(){
-        public boolean isTrusted(X509Certificate[] chain, String authType)
-                throws CertificateException {
-            return true;
-        }
-    };
+    static final TrustStrategy trustAllStrategy = (chain, authType) -> true;
 
     @Test
     public void testSelfSignedOnSelfSignedUsingCode() throws Exception {
